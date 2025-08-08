@@ -14,7 +14,7 @@ if ! docker compose version &>/dev/null; then
 fi
 echo "Docker and Docker Compose found successfully."
 
-DOCKERFILE_PATH="${SCRIPT_DIR}/hadoop_platform/docker/base.Dockerfile"
+DOCKERFILE_PATH="${SCRIPT_DIR}/hadoop_platform/docker/Dockerfile"
 COMPOSE_PATH="${SCRIPT_DIR}/hadoop_platform/compose/docker-compose.yaml"
 
 if [ ! -f "$DOCKERFILE_PATH" ]; then
@@ -31,7 +31,7 @@ export HADOOP_PLATFORM_UID=$(id -u)
 export HADOOP_PLATFORM_GID=$(id -g)
 
 echo "Building the Hadoop base image..."
-docker build -f "$DOCKERFILE_PATH" -t "hadoop_platform" "$SCRIPT_DIR"
+docker build -f "$DOCKERFILE_PATH" -t "spark_iceberg" "$SCRIPT_DIR"
 
 echo "Starting services with Docker Compose..."
 docker compose -f "$COMPOSE_PATH" up --build
