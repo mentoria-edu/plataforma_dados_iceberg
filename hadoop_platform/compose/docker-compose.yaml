@@ -63,8 +63,10 @@ services:
 
   client_node:
     image: spark_iceberg
-    entrypoint: ["bash", "-c", "bash /opt/spark/bin/spark-submit /opt/spark/conf/create_iceberg_table.py"] 
+    entrypoint: ["bash", "-c", "tail -f /dev/null"] 
     container_name: client_node
+    volumes:
+      - ../scripts:/opt/scripts
     ports:
       - "9090:9090"
       - "9091:9091"
